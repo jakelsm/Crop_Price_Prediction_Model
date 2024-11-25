@@ -58,9 +58,8 @@
 ---
 
 ### 5. 참고 자료
-- [프로젝트 발표 자료](reports/발표자료.pdf)
-- [최종 보고서](reports/최종보고서.pdf)
-- [Colab에서 실행](https://colab.research.google.com/github/username/repository/blob/main/Crops_Price_Prediction.ipynb)
+- [최종 보고서](3조 예비프로젝트 - 쌈무(무트코인) 최종결과보고서)
+- [Colab에서 실행](https://colab.research.google.com/drive/18A3Bi5z-oJMBoxm61E_LNMlfA8HorEzJ?authuser=1)
 
 ---
 
