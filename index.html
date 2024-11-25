@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>무트코인</title>
+    <style>
+        body {
+            background-color: #e6ffe6;
+            font-family: Arial, sans-serif;
+            color: #333;
+            text-align: center;
+            margin-top: 50px;
+        }
+
+        h1 {
+            color: #006600;
+            margin-bottom: 30px;
+        }
+
+        button {
+            background-color: #008000;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            margin: 20px;
+        }
+
+        button:hover {
+            background-color: #006600;
+        }
+    </style>
+</head>
+<body>
+    <h1>무 가격 예측 모델을 선택하세요</h1>
+
+    <!-- GRU 모델 선택 -->
+    <button onclick="window.location.href='gru_model.html'">소.도매업자용 모델 선택</button>
+
+    <!-- CNN-LSTM 모델 선택 -->
+    <button onclick="window.location.href='cnn_lstm_model.html'">소비자용 모델 선택</button>
+
+</body>
+</html>
+

@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>소.도매업자용 모델 예측</title>
+    <style>
+        body {
+            background-color: #e6ffe6;
+            font-family: Arial, sans-serif;
+            color: #333;
+            text-align: center;
+            margin-top: 50px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: bold;
+        }
+
+        input {
+            padding: 10px;
+            margin-bottom: 20px;
+            border: 1px solid #006600;
+            border-radius: 5px;
+            width: 250px;
+        }
+
+        button {
+            background-color: #008000;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        button:hover {
+            background-color: #006600;
+        }
+
+        #result {
+            margin-top: 20px;
+            font-size: 18px;
+            font-weight: bold;
+            color: #004d00;
+        }
+    </style>
+</head>
+<body>
+    <h1>소.도매업자용 모델 예측</h1>
+
+    <label for="current_date">현재 날짜 (YYYY.MM.DD 형식):</label>
+    <input type="text" id="current_date" placeholder="예: 2023.10.25" required>
+
+    <label for="current_temp">현재 기온 (℃):</label>
+    <input type="number" id="current_temp" step="0.1" placeholder="예: 15.0" required>
+
+    <label for="current_rainfall">현재 강수량 (mm):</label>
+    <input type="number" id="current_rainfall" step="0.1" placeholder="예: 10.0" required>
+
+    <label for="future_date">미래 날짜 (YYYY.MM.DD 형식):</label>
+    <input type="text" id="future_date" placeholder="예: 2023.12.01" required>
+
+    <button onclick="predictPriceGRU()">가격 예측</button>
+
+    <div id="result"></div>
+
+    <script>
+        async function predictPriceGRU() {
+            const currentDate = document.getElementById("current_date").value;
+            const currentTemp = document.getElementById("current_temp").value;
+            const currentRainfall = document.getElementById("current_rainfall").value;
+            const futureDate = document.getElementById("future_date").value;
+
+            // 입력된 날짜 형식을 검증하는 정규식 (YYYY.MM.DD 형식)
+            const datePattern = /^\d{4}\.\d{2}\.\d{2}$/;
+
+            if (!datePattern.test(currentDate) || !datePattern.test(futureDate)) {
+                alert('날짜 형식이 맞지 않습니다. YYYY.MM.DD 형식으로 입력해주세요.');
+                return;
+            }
+
+            try {
+                const response = await fetch('http://127.0.0.1:5001/predict', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        current_date: currentDate,
+                        current_temp: parseFloat(currentTemp),
+                        current_rainfall: parseFloat(currentRainfall),
+                        future_date: futureDate
+                    })
+                });
+
+                if (!response.ok) {
+                    throw new Error('예측 요청 실패');
+                }
+
+                const result = await response.json();
+
+                document.getElementById('result').innerText = `
+                    ${futureDate}의 예상 가격: ${result.predicted_price.toFixed(2)}원
+                `;
+            } catch (error) {
+                console.error('오류:', error);
+                document.getElementById('result').innerText = '예측 중 오류가 발생했습니다.';
+            }
+        }
+    </script>
+</body>
+</html>

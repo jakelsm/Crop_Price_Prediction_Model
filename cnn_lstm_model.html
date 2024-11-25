@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>소비자용 모델 예측</title>
+
+    <style>
+        body {
+            background-color: #e6ffe6;
+            font-family: Arial, sans-serif;
+            color: #333;
+            text-align: center;
+            margin-top: 50px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: bold;
+        }
+
+        input {
+            padding: 10px;
+            margin-bottom: 20px;
+            border: 1px solid #006600;
+            border-radius: 5px;
+            width: 250px;
+        }
+
+        button {
+            background-color: #008000;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        button:hover {
+            background-color: #006600;
+        }
+
+        #result {
+            margin-top: 20px;
+            font-size: 18px;
+            font-weight: bold;
+            color: #004d00;
+        }
+    </style>
+
+    <script>
+        async function predictPrice() {
+            const inputDate = document.getElementById('inputDate').value;
+
+            if (!inputDate) {
+                alert('미래 날짜를 입력하세요!');
+                return;
+            }
+
+            try {
+                const response = await fetch('http://127.0.0.1:5000/predict_cnn_lstm', {  // 포트 5000
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ input_date: inputDate })
+                });
+
+                if (!response.ok) {
+                    throw new Error('예측 요청 실패');
+                }
+
+                const data = await response.json();
+                document.getElementById('result').innerHTML = `
+                    <p>예상 최저 가격: ${data.min_price.toFixed(2)}원</p>
+                    <p>예상 평균 가격: ${data.mean_price.toFixed(2)}원</p>
+                    <p>예상 최고 가격: ${data.max_price.toFixed(2)}원</p>
+                `;
+            } catch (error) {
+                console.error('오류:', error);
+                document.getElementById('result').innerText = '예측 중 오류가 발생했습니다.';
+            }
+        }
+    </script>
+</head>
+<body>
+    <h1>소비자용 모델 예측</h1>
+    <label for="inputDate">미래 날짜를 입력하세요 (yyyy-mm-dd): </label>
+    <input type="date" id="inputDate" required>
+    <button onclick="predictPrice()">예측하기</button>
+
+    <div id="result"></div>
+</body>
+</html>
