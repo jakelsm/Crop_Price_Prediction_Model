@@ -24,7 +24,7 @@
   시연 영상.mp4
 
 - **예측 결과**:
-  ![예측 샘플](results/prediction_sample.png)
+  예측성능결과.png
 
 ---
 
