@@ -21,7 +21,7 @@
   - 평균 절대 오차 (MAE): 15.3
   - 결정계수 (R²): 0.87
 - **결과 시각화**:
-  ![모델 성능](results/model_performance.png)
+  시연 영상.mp4
 
 - **예측 결과**:
   ![예측 샘플](results/prediction_sample.png)
