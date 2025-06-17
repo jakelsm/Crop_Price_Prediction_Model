@@ -4,7 +4,8 @@
 
 ---
 
-<img width="1589" alt="포스터" src="https://github.com/user-attachments/assets/014d45a2-3ce3-4dc8-946b-d9b5f65e800b" />
+<img width="1589" alt="포스터수정본" src="https://github.com/user-attachments/assets/6f03b062-3c23-40fd-b754-db9076f469cb" />
+
 
 ---
 
