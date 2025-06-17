@@ -4,13 +4,7 @@
 
 ---
 
-## 📄 주요 자료
-- **최종 발표 자료**: [최종 발표 PPT](https://drive.google.com/file/d/1Jplnj-rCE6TP8o1Bhprr-4tosptDxM73/view?usp=sharing)  
-  프로젝트의 목표와 결과를 요약한 발표 자료입니다.
-- **최종 포스터**: [최종 프로젝트 포스터](https://drive.google.com/file/d/1t1NzNb2CeWvxvOGGWzqtYXfu4CZA52hz/view?usp=sharing)  
-  프로젝트의 핵심 내용을 시각적으로 정리한 포스터입니다.
-- **가격 예측 모델 데이터**: [모델 학습 데이터](https://drive.google.com/drive/folders/1k8HKGJQGYZwzEx3BNlIdrcIaGD6oL4LZ?usp=sharing)  
-  농작물 가격 예측 모델의 학습과 테스트에 사용된 데이터입니다.
+<img width="1589" alt="포스터" src="https://github.com/user-attachments/assets/014d45a2-3ce3-4dc8-946b-d9b5f65e800b" />
 
 ---
 
